@@ -1,26 +1,32 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, {Component} from 'react';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+class Acconridion extends Component {
+  constructor() {
+    super();
+    this.state = {
+      isCollapsed : true //đóng
+    };
+    // this.onClick = this.onClick.bind(this);
+  }
+
+  onClick() {
+    this.setState({
+      isCollapsed : !this.state.isCollapsed
+    })
+  }
+
+  render () {
+    const {heading, children} = this.props;
+    const {isCollapsed} = this.state;
+    return (
+      <div className="Acconridion">
+        <div onClick={() => this.onClick()} className="Heading">
+          <h1>{heading}</h1>
+        </div>
+        { !isCollapsed && <div className="Content">{children}</div> }
+      </div>
+    );
+  }
 }
 
-export default App;
+export default Acconridion;
