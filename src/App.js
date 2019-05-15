@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import './App.css';
 import Acconridion from './components/Acconridion';
+import Ref from './components/Ref';
 
 class App extends Component {
   render () {
@@ -9,6 +10,7 @@ class App extends Component {
         <Acconridion heading="heading">
           A JavaScript library for building user interfaces
         </Acconridion>
+        <Ref />
       </div>
     );
   }
