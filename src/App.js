@@ -1,11 +1,14 @@
 import React from 'react';
 import logo from './logo.svg';
 import './App.css';
+import List1 from './components/List1';
 
+
+const data = ['a', 'b', 'c'];
 function App() {
   return (
     <div className="App">
-      <header className="App-header">
+      {/* <header className="App-header">
         <img src={logo} className="App-logo" alt="logo" />
         <p>
           Edit <code>src/App.js</code> and save to reload.
@@ -18,7 +21,10 @@ function App() {
         >
           Learn React
         </a>
-      </header>
+      </header> */}
+      <List1 data={data} render={item => <div>{item}</div>} />
+      <List1 data={data} render={item => <div> + {item}</div>} />
+      <List1 data={data} render={item => <div> + {item}</div>} />
     </div>
   );
 }
