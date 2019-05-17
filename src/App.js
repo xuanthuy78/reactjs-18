@@ -2,6 +2,7 @@ import React from 'react';
 import logo from './logo.svg';
 import './App.css';
 import List1 from './components/List1';
+import Counter from './components/Counter';
 
 
 const data = ['a', 'b', 'c'];
@@ -22,6 +23,7 @@ function App() {
           Learn React
         </a>
       </header> */}
+      <Counter render = {value => <h1>{value}</h1>} />
       <List1 data={data} render={item => <div>{item}</div>} />
       <List1 data={data} render={item => <div> + {item}</div>} />
       <List1 data={data} render={item => <div> + {item}</div>} />
