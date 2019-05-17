@@ -15,13 +15,18 @@ function App() {
         {value => <h1>{value}</h1>}
       </Counter> */}
       <Counter>
-        { state =>  
+        {(state) => (
+          <div>
+            <h1>Count: {state.count}</h1> 
+          </div>
+        )}
+        {/* { state =>  
           <React.Fragment>
             <div>
               <h1>Count: {state.count}</h1> 
             </div>
           </React.Fragment>
-        }
+        } */}
       </Counter>
       {/* <Counter>{({ count }) => <h1>{count}</h1>}</Counter> */}
       <List1 data={data} render={(item, index) => <div key = {index}>{item}</div>} className="data"/>
