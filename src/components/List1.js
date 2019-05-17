@@ -1,8 +1,9 @@
 import React from 'react';
 
-export default function ({data, render}) {
+export default function (props) {
+    console.log(props);
     return <div>
-        { data.map((item) => render(item)) }
+        { props.data.map((item) => props.render(item)) }
     </div>
     
 }
