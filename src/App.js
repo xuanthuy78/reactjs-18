@@ -1,4 +1,5 @@
 import React from 'react';
+import ReactDOM from "react-dom";
 import logo from './logo.svg';
 import './App.css';
 import List1 from './components/List1';
@@ -9,24 +10,23 @@ const data = ['a', 'b', 'c'];
 function App() {
   return (
     <div className="App">
-      {/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}
-      <Counter render = {value => <h1>{value}</h1>} />
-      <List1 data={data} render={item => <div>{item}</div>} />
-      <List1 data={data} render={item => <div> + {item}</div>} />
-      <List1 data={data} render={item => <div> + {item}</div>} />
+      {/* <Counter render = {value => <h1>{value}</h1>} /> */}
+      {/* <Counter>
+        {value => <h1>{value}</h1>}
+      </Counter> */}
+      <Counter>
+        { state =>  
+          <React.Fragment>
+            <div>
+              <h1>Count: {state.count}</h1> 
+            </div>
+          </React.Fragment>
+        }
+      </Counter>
+      {/* <Counter>{({ count }) => <h1>{count}</h1>}</Counter> */}
+      <List1 data={data} render={(item, index) => <div key = {index}>{item}</div>} className="data"/>
+      <List1 data={data} render={(item, index) => <div key = {index}> + {item}</div>} />
+      <List1 data={data} render={(item, index) => <div key = {index}> + {item}</div>} />
     </div>
   );
 }
