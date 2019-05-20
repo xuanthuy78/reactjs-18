@@ -8,6 +8,7 @@ import {
   NavItem,
   NavLink} from 'reactstrap';
 import { Link } from "react-router-dom";
+import { CartContext } from "../contexts/Cart";
 
 export default class Example extends React.Component {
   constructor(props) {
@@ -39,6 +40,14 @@ export default class Example extends React.Component {
               <NavItem>
                 <NavLink>
                     <Link to="/product">Product</Link>
+                </NavLink>
+              </NavItem>
+              <NavItem>            
+                <NavLink>
+                  <CartContext>
+                    {({cartItems}) =>  <Link to="/card">card({cartItems.length})</Link>}
+                   
+                  </CartContext>   
                 </NavLink>
               </NavItem>
             </Nav>

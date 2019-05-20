@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { Card, CardImg, CardText, CardBody,
   CardTitle, CardSubtitle, Button, Container, Row, Col } from 'reactstrap';
 // import axios from 'axios';
-
+import { CartContext } from "../contexts/Cart";
 class Products extends Component {
   constructor(props) {
     super(props);
@@ -85,7 +85,10 @@ class Products extends Component {
                   <CardTitle>{product.name}</CardTitle>
                   <CardSubtitle>Card subtitle</CardSubtitle>
                   <CardText>{product.description}</CardText>
-                  <Button>Add to card</Button>
+                  <CartContext.Consumer>
+                    {({addTocart}) =>  <Button onClick={()=>addTocart(product)}>Add to card</Button> }
+                   
+                  </CartContext.Consumer>
                 </CardBody>
               </Card>
             </Col>
