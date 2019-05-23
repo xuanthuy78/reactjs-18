@@ -1,12 +1,23 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 
 export class TaskItem extends Component {
-    render() {
-      // const {task, index} = this.props;
+    onUpdateStatus = () => {
+      this.props.onUpdateStatus(this.props.task.id)
+    }
+     render() {
+      const {task, index} = this.props;
         return (
           <tr>
-            <td>Kenh</td>
-            <td>Lenha</td>
+            <td>{index + 1}</td>
+            <td>{task.name}</td>
+            <td className="text-center">
+              <span 
+                  className={ task.status === true ? 'btn btn-success' : 'btn btn-warning'}
+                  onClick = {this.onUpdateStatus}
+              >
+                {task.status === true ? 'Kích hoạt' : 'Ẩn' }
+              </span>
+            </td>
             <td>John</td>
           </tr>
         )

@@ -3,13 +3,16 @@ import TaskItem from './TaskItem';
 
 export class TaskList extends Component {
     render() {
-      // const {tasks} = this.props;
-      // let elmTasks = tasks.map((task,index)=>{
-      //   return <TaskItem 
-      //             key={task.id}
-      //             index={index}
-      //             task={task}/>
-      // })
+      const {tasks} = this.props;
+      let elmTasks = tasks.map((task,index)=>{
+        console.log(index);
+        return <TaskItem 
+                  key={task.id}
+                  index={index}
+                  task={task}
+                  onUpdateStatus = {this.props.onUpdateStatus}
+                />
+      })
         return (
         <div className="row mt-5">
             <div className="col-xs-12 col-sm-12 col-md-12 col-lg-12">
@@ -41,7 +44,7 @@ export class TaskList extends Component {
                     </td>
                     <td />
                   </tr>
-                  {/* {elmTasks} */}
+                  {elmTasks}
                 </tbody>
               </table>
             </div>
