@@ -47,6 +47,7 @@ export class TaskForm extends Component {
                         className="fa fa-times-circle text-right"
                         onClick={this.onCloseForm}
                     ></span>
+                    Thêm Công Việc
                 </h3>
             </div>
             <div className="panel-body">
@@ -85,7 +86,7 @@ export class TaskForm extends Component {
                         >
                             <span 
                                 className="fa fa-close mr-5"
-                            ></span>Hủy Bỏsss
+                            ></span>Hủy Bỏ
                         </button>
                     </div>
                 </form>
