@@ -4,8 +4,35 @@ export class TaskForm extends Component {
     constructor() {
         super();
         this.state = {
+            id : '',
             name : '',
             status: false
+        }
+    }
+
+    componentWillMount() {
+        if(this.props.task) {
+            this.setState({
+                id: this.props.task.id,
+                name: this.props.task.name,
+                status: this.props.task.status
+            })
+        }
+    }
+
+    componentWillReceiveProps(nextProps) {
+        if(nextProps && nextProps.task) {
+            this.setState ({
+                id: this.props.task.id,
+                name: this.props.task.name,
+                status: this.props.task.status 
+            })
+        } else if (!nextProps.task) {
+            this.setState({
+                id : '',
+                name : '',
+                status: false
+            })
         }
     }
     onCloseForm = () => {
@@ -38,7 +65,7 @@ export class TaskForm extends Component {
     }
 
     render() {
-        const {name, status} = this.state;
+        const {name, status, id} = this.state;
         return (
         <div className="panel panel-warning">
             <div className="panel-heading">
@@ -47,7 +74,7 @@ export class TaskForm extends Component {
                         className="fa fa-times-circle text-right"
                         onClick={this.onCloseForm}
                     ></span>
-                    Thêm Công Việc
+                    { id !=="" ? "Cập nhập công việc" : "Thêm công việc"}
                 </h3>
             </div>
             <div className="panel-body">

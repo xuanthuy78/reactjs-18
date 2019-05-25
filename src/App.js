@@ -56,9 +56,17 @@ export class App extends Component  {
   }
 
   onDisplayForm = () => {
-    this.setState ({
-      isDisplayForm : !this.state.isDisplayForm
-    })
+    if(this.state.isDisplayForm && this.state.taskEditting !== null) {
+      this.setState({
+        isDisplayForm: true,
+        taskEditting: null
+      })
+    } else {
+      this.setState({
+        isDisplayForm: !this.state.isDisplayForm,
+        taskEditting: null
+      })
+    }
   }
 
   onCloseForm = () => {
@@ -75,11 +83,18 @@ export class App extends Component  {
 
   onSubmit = (data) => {
     var { tasks } = this.state;
-    data.id = this.generateID();
-    tasks.push(data);
+    if(data.id === '') {
+      data.id = this.generateID()
+      tasks.push(data)
+    } else {
+      var index = this.findIndex(data.id);
+      tasks[index] = data;
+    }
+    
     this.setState({
-       tasks : tasks 
-    });
+      tasks: tasks
+    })
+    localStorage.setItem('tasks', JSON.stringify(tasks))
   }
 
   onUpdateStatus = (id) => {
