@@ -4,13 +4,18 @@ import TaskControl from "./components/TaskControl";
 import TaskList from "./components/TaskList";
 import TaskForm from "./components/TaskForm";
 
+
 export class App extends Component  {
   constructor() {
     super();
     this.state = {
       tasks: [],
       isDisplayForm: false,
-      taskEditting: null
+      taskEditting: null,
+      filter: {
+        name: '',
+        status: -1
+      },
     }
   }
   onGenerateData = () => {
@@ -147,8 +152,20 @@ export class App extends Component  {
     return result
   }
 
+  onFilter = (filterName, filterStatus) => {
+    console.log(filterName, filterStatus)
+    filterStatus = parseInt(filterStatus,10);
+
+    this.setState({
+      filter: {
+        name: filterName.toLowerCase(),
+        status: filterStatus
+      }
+    })
+  }
   render() {
-    const {tasks, isDisplayForm, taskEditting} = this.state;
+    const {tasks, isDisplayForm, taskEditting, filter} = this.state;
+    console.log(filter);
     var elmTaskForm = isDisplayForm 
       ? <TaskForm  
           onCloseForm={this.onCloseForm}
@@ -156,6 +173,13 @@ export class App extends Component  {
           task = {taskEditting}
         /> 
       : "";
+    if(filter) {
+      if(filter.name) {
+        tasks = tasks.filter((task)=> {
+          return task.name.indexOf(filter.name)
+        })
+      }
+    }
     return (
       <div className="container">
         <div className="text-center">
@@ -187,6 +211,8 @@ export class App extends Component  {
               onUpdateStatus= {this.onUpdateStatus}
               onDelete = {this.onDelete}
               onUpdate = {this.onUpdate}
+              // onFilter = {this.onFilter}
+              onFilter={this.onFilter.bind(this)}
             />
           </div>
         </div>
